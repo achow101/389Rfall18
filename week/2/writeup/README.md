@@ -21,7 +21,7 @@ Digital acknowledgement of honor pledge: Andrew Chow
     - Twitter: https://twitter.com/kruegster1990
     - Reddit: https://www.reddit.com/user/kruegster1990
   - Has a website `cornerstoneairlines.co`. Presumably is the owner of the company `Conerstone Airlines`. From twitter profile
-  - Email is `kruegster1990@tutanota.com`: Listed on his website
+  - Email is `kruegster@tutanota.com`: Listed on his website
   - Is flying from BWI to SFO on December 9, 2018  (or September 12, 2018 if European style. It is unclear what style should be used for this). From Instagram.
 
 3. `142.92.118.186`. I found this by using the `dig` command to get the DNS records.
@@ -36,6 +36,7 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 8. 
   - `CMSC389R-{h1dden_fl4g_in_s0urce}` Found in the source code of the main page of the website.
+  - `CMSC389R-{dns-txt-rec0rd-ftw}` Found in a TXT DNS record.
 
 ### Part 2 (55 pts)
 
