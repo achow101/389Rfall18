@@ -40,4 +40,38 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 ### Part 2 (55 pts)
 
-*REPLACE THIS TEXT WITH A BRIEF EXPLANATION OF YOUR APPROACH TO SOLVING THIS CHALLENGE, AND THE OUTCOME*
+The flag I found was `CMSC389R-{c0rn3rstone-air-27670}`.
+
+This flag was found on the administration server located at `142.93.117.193`.
+To find the port to connect to, I first used nmap to scan for all ports at that IP address.
+The command was `nmap -p1-65535 142.93.117.193`.
+When nmap finished, the resulting ports were 80, 2222, 1337, 10010.
+I then connected to each port with `nc` to see if any returned a login prompt.
+Port 1337 returned a login prompt.
+
+To get the login, I used a brute force python script.
+This script connected to `142.93.117.193` at port `1337`.
+It fetched the username prompt, then submitted the username.
+Then it fetches the password prompt and submits a password.
+
+For the username, I tried a few different usernames. I tried kruegster1990, admin, administrator, and kruegster.
+`kruegster` was the correct username.
+
+For the password, I used the rockyou wordlist.
+I copied the wordlist to my working directory and then opened it and read it line by line.
+Each line is a password, so after stripping the whitespace, I submitted each line as a password attempt.
+Failures resulted in a `Fail` string.
+If a failure was observed, the socket was closed.
+The next attempt then opened the socket again, handled the username prompt, submitted the username, handled the password prompt, and submitted the password.
+This went in a loop until either something other than `Fail` was received or until 500 passwords had been attempted.
+Eventually this resulted in correct password.
+
+Once I had the password, I could login to the server.
+I connected to the server using the nc command.
+The full command was `nc 142.93.117.193 1337`.
+The username was `kruegster` and the password was `pokenmon`.
+After logging in, I looked in `/home` which had a folder named `flight_records`.
+In `/home/flight_records`, there were `.txt` files for several different flight numbers.
+From looking at `kruegster1990`'s instagram, I knew that he had a boarding pass for a flight with the number AAC27670.
+Doing `cat AAC27670.txt` gave me the flag `CMSC389R-{c0rn3rstone-air-27670}`.
+Some further investigation also showed that all of the flight record files have a flag of the format `CMSC389R-{c0rn3rstone-air-<flight number>}` where `<flight number>` is the number of the flight the record refers to.
