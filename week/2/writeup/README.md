@@ -32,7 +32,7 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 6. The associated servers are hosted with Digital Ocean. This was found with a reverse DNS search using the site https://who.is. Using a IP gelocation webiste https://www.iplocation.net/, I found the server to be located in New Jersey or New York, near New York City.
 
-7. The server is running some form of Linux. It is likely to be a router. This was found using nmap's OS discovery option.
+7. The server is running Ubuntu. Visiting a non-existent page on the server gives a 404 error stating that the server software is Apache 2.4.18 running Ubuntu.
 
 8. 
   - `CMSC389R-{h1dden_fl4g_in_s0urce}` Found in the source code of the main page of the website.
