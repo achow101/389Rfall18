@@ -24,3 +24,10 @@ Furthermore, Fred could have also checked whether his password was in [Have I Be
 That list contains the SHA-1 hashes of hundreds of millions of plaintext passwords from many data breaches,
 By hashing his password with SHA-1 and checking if it is in the list, Fred can check whether the password he is using has already been leaked to the world.
 Using a password manager such as 1password would allow him to be able to do this quickly, automatically, and securely as that has built in functionality for checking the Pwned Passwords list.
+
+#### Exposed Admin Server
+
+Fred's admin server for his website was very easy to find.
+Because that server is different from the webserver and contains information about flights themselves, it really should not have been publicly available.
+It's IP address was on Cornerstone Airlines' website publicly.
+It instead should not have been there and the IP address should have been kept as something internal to the airline.
