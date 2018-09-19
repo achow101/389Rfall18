@@ -30,4 +30,12 @@ Using a password manager such as 1password would allow him to be able to do this
 Fred's admin server for his website was very easy to find.
 Because that server is different from the webserver and contains information about flights themselves, it really should not have been publicly available.
 It's IP address was on Cornerstone Airlines' website publicly.
-It instead should not have been there and the IP address should have been kept as something internal to the airline.
+It instead should not have been linked to from the Cornerstone Airline's website and the IP address should have been kept as something internal to the airline.
+
+### Exposed Login Port
+
+Fred's admin server should not have had the port to login to the server to be exposed publicly.
+Instead of having anyone be able to connect to that port, Fred should have configure the server so that only users connecting from a hardcoded IP address (e.g. his IP address) can access the server.
+All other connections from other IP addresses should have been dropped and not be allowed to attempt to login.
+[Amazon Web Services recommends](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-recommended-nacl-rules.html) that their customers limit connections to the SSH port to specific IP addresses of the customers' home or office.
+Fred should have done the same too for the login port on his admin server.
