@@ -33,4 +33,19 @@ Fred could also ensure that the input string matches a specific pattern (e.g. `%
 If it doesn't match the pattern, then the script would return an error instead of executing the command.
 
 ### Part 2 (55 pts)
-*Put your writeup >= 200 words here in response to part 2 prompt. Your code for part 2 should be copied into a file in the /writeup directory and pushed there as well*
+
+The interactive shell is implemented in `shell.py` using Python 3.
+
+It uses an infinite while loop to listen for input from the user.
+When `shell` is called, the `shell()` function is invoked, `pull()` is used for `pull`, and `exit` breaks out of the loop.
+`help`, unknown, and malformed commands will print the help text.
+
+For `shell`, I used another infinite while loop.
+For every non-exit command, `send_cmd()` is used to get the output of the command and the current working directory.
+`send_cmd()` opens a socket to the server, reads in all of the introduction text, then sends the command `; cd <working-dir>; <command>; echo ' $$$ '; pwd\n`
+`cd <working-dir>` has the command go to the correct working directory for the command.
+`echo ' $$$ '; pwd` is used to have a unique separator in the output followed by the new current working directory.
+When the `exit` command is seen, the shell breaks out of the loop and the function returns.
+
+`pull` also uses `send_cmd()` with a fixed command of `cat <remote-path>` to get the bytes of the file.
+Those bytes are written to a new file opened with the `x` mode which only allows for writing to newly created files.

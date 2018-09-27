@@ -92,11 +92,11 @@ if __name__ == '__main__':
         cmd = splitted[0]
         args = splitted[1:]
 
-        if cmd == 'shell':
+        if cmd == 'shell' and len(args) == 0:
             shell()
-        elif cmd == 'pull':
+        elif cmd == 'pull' and len(args) == 2:
             pull(args)
-        elif cmd == 'quit':
+        elif cmd == 'quit' and len(args) == 0:
             break
         else:
             print_help()
