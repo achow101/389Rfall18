@@ -6,10 +6,10 @@ my_memset:
         mov rbp, rsp  ;moves up the base pointer to the top of the stack to create a new frame
 
         mov rcx, rdx  ;set rcx to loop counter
-        write_loop:
+        memset_loop:
             mov byte ptr [rdi], rsi ;copy character into location pointed by rsi
             add rdi, 1              ;increment pointer by one
-            loop write_loop         ;loop
+            loop memset_loop         ;loop
 
         leave         ;moves down the stack pointer to the current base pointer,
                       ;and restores our saved base pointer, effectively
@@ -23,11 +23,11 @@ my_strncpy:
         mov rbp, rsp  ;moves up the base pointer to the top of the stack to create a new frame
 
         mov rcx, rdx  ;set rcx to loop counter
-        write_loop:
+        strncpy_loop:
             mov byte ptr [rdi], byte ptr [rsi] ;copy character from src into dst
             add rdi, 1              ;increment pointer by one
             add rsi, 1
-            loop write_loop         ;loop
+            loop strncpy_loop         ;loop
 
         leave         ;moves down the stack pointer to the current base pointer,
                       ;and restores our saved base pointer, effectively
