@@ -5,10 +5,10 @@ my_memset:
         push rbp      ;saves the base pointer for the previous function's stack frame
         mov rbp, rsp  ;moves up the base pointer to the top of the stack to create a new frame
 
-        mov rcx, rdi  ;set rcx to loop counter
+        mov rcx, rdx  ;set rcx to loop counter
         write_loop:
-            mov byte ptr [rsi], rdx ;copy character into location pointed by rsi
-            add rsi, 1              ;increment pointer by one
+            mov byte ptr [rdi], rsi ;copy character into location pointed by rsi
+            add rdi, 1              ;increment pointer by one
             loop write_loop         ;loop
 
         leave         ;moves down the stack pointer to the current base pointer,
