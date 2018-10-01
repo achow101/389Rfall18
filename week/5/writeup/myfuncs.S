@@ -7,7 +7,7 @@ my_memset:
 
         mov rcx, rdx  ;set rcx to loop counter
         memset_loop:
-            mov byte ptr [rdi], rsi ;copy character into location pointed by rsi
+            mov [rdi], sil ;copy character into location pointed by rsi
             add rdi, 1              ;increment pointer by one
             loop memset_loop         ;loop
 
@@ -24,8 +24,9 @@ my_strncpy:
 
         mov rcx, rdx  ;set rcx to loop counter
         strncpy_loop:
-            mov byte ptr [rdi], byte ptr [rsi] ;copy character from src into dst
-            add rdi, 1              ;increment pointer by one
+            mov dl, [rsi]   ;copy char into register
+            mov [rdi], dl   ;copy from register to memory
+            add rdi, 1      ;increment pointer by one
             add rsi, 1
             loop strncpy_loop         ;loop
 
