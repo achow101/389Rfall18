@@ -1,12 +1,12 @@
 Writeup 7 - Forensics I
 ======
 
-Name: *PUT YOUR NAME HERE*
-Section: *PUT YOUR SECTION NUMBER HERE*
+Name: Andrew Chow
+Section: 0101
 
 I pledge on my honor that I have not given or received any unauthorized assistance on this assignment or examination.
 
-Digital acknowledgement of honor pledge: *PUT YOUR NAME HERE*
+Digital acknowledgement of honor pledge: Andrew Chow
 
 ## Assignment 7 writeup
 
