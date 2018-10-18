@@ -12,17 +12,17 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 ### Part 1 (40 pts)
 
-1. 
+1. JPEG
 
-2. 
+2. John Hancock Center in Chicago, Illinois
 
-3. 
+3. Taken August 22nd, 108 at 11:33:24 CDT. Timestamp is 2018:08:22 16:33:24Z
 
-4. 
+4. iPhone 8
 
-5. 
+5. 539.5 m above sea level
 
-6.
+6. `CMSC389R-{look_I_f0und_a_str1ng}``
 
 ### Part 2 (55 pts)
 
