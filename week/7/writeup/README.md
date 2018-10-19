@@ -22,7 +22,7 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 5. 539.5 m above sea level
 
-6. `CMSC389R-{look_I_f0und_a_str1ng}``
+6. `CMSC389R-{look_I_f0und_a_str1ng}` and `CMSC389R-{abr@cadabra}`
 
 ### Part 2 (55 pts)
 
