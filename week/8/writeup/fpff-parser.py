@@ -62,9 +62,10 @@ def section_name(stype):
         print('TYPE NAME: ASCII')
 
 # Unpack body
-for i in range(1, section_count + 1):
+sec = 1
+while offset < len(data):
     # Unpack section
-    print('-------  Section {}  -------'.format(i))
+    print('-------  Section {}  -------'.format(sec))
     stype, slen = struct.unpack('<LL', data[offset:offset + 8])
     offset += 8
     print('STYPE: {}'.format(hex(stype)))
@@ -74,13 +75,13 @@ for i in range(1, section_count + 1):
         continue
 
     if stype == 1:
-        with open('sec{}.png'.format(i), 'wb') as f:
+        with open('sec{}.png'.format(sec), 'wb') as f:
             f.write(b'\x89\x50\x4e\x47\x0d\x0a\x1a\x0a')
             f.write(data[offset:offset + slen])
-        print('PNG written to file sec{}.png'.format(i))
+        print('PNG written to file sec{}.png'.format(sec))
     elif stype == 2:
         if slen % 8 != 0:
-            print('Section {}, invalid DWORDS length {}. Skipping.'.format(i, slen))
+            print('Section {}, invalid DWORDS length {}. Skipping.'.format(sec, slen))
             offset += slen
             continue
         num_dwords = slen // 8
@@ -94,7 +95,7 @@ for i in range(1, section_count + 1):
         print(text.decode('utf-8'))
     elif stype == 4:
         if slen % 8 != 0:
-            print('Section {}, invalid DOUBLES length {}. Skipping.'.format(i, slen))
+            print('Section {}, invalid DOUBLES length {}. Skipping.'.format(sec, slen))
             offset += slen
             continue
         num_doubles = slen // 8
@@ -105,7 +106,7 @@ for i in range(1, section_count + 1):
             print(double)
     elif stype == 5:
         if slen % 4 != 0:
-            print('Section {}, invalid WORDS length {}. Skipping.'.format(i, slen))
+            print('Section {}, invalid WORDS length {}. Skipping.'.format(sec, slen))
             offset += slen
             continue
         num_words = slen // 4
@@ -116,14 +117,14 @@ for i in range(1, section_count + 1):
             print(word)
     elif stype == 6:
         if slen != 16:
-            print('Section {}, invalid COORDINATES length {}. Skipping.'.format(i, slen))
+            print('Section {}, invalid COORDINATES length {}. Skipping.'.format(sec, slen))
             offset += slen
             continue
         coord1, coord2 = struct.unpack('<dd', data[offset:offset + 16])
         print('Latitude {}, Longitude {}'.format(coord1, coord2))
     elif stype == 7:
         if slen != 4:
-            print('Section {}, invalid REFERENCE length {}. Skipping.'.format(i, slen))
+            print('Section {}, invalid REFERENCE length {}. Skipping.'.format(sec, slen))
             offset += slen
             continue
         section = struct.unpack('<L', data[offset:offset + 4])[0]
@@ -134,4 +135,5 @@ for i in range(1, section_count + 1):
     else:
         bork('Unknown type {} for section {}'.format(stype, i))
     offset += slen
+    sec += 1
 print('------- DONE --------')
