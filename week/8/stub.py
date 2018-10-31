@@ -43,15 +43,7 @@ print('SECTION COUNT: {}'.format(section_count))
 
 print('-------  BODY  -------')
 
-# Unpack body
-for i in range(0, section_count):
-    # Unpack section
-    print('-------  Section {}  -------'.format(i + 1))
-    stype, slen = struct.unpack('<LL', data[offset:offset + 8])
-    offset += 8
-    print('STYPE: {}'.format(hex(stype)))
-    print('SLENGTH: {}'.format(slen))
-
+def section_name(stype):
     if stype == 1:
         print('TYPE NAME: PNG')
     elif stype == 2:
@@ -68,5 +60,34 @@ for i in range(0, section_count):
         print('TYPE NAME: REFERENCE')
     elif stype == 9:
         print('TYPE NAME: ASCII')
+
+# Unpack body
+for i in range(0, section_count):
+    # Unpack section
+    print('-------  Section {}  -------'.format(i + 1))
+    stype, slen = struct.unpack('<LL', data[offset:offset + 8])
+    offset += 8
+    print('STYPE: {}'.format(hex(stype)))
+    print('TYPE NAME: {}'.format(section_name(stype)))
+    print('SLENGTH: {}'.format(slen))
+    if slen == 0:
+        continue
+
+    if stype == 1:
+        pass
+    elif stype == 2:
+        pass
+    elif stype == 3:
+        pass
+    elif stype == 4
+        pass
+    elif stype == 5:
+        pass
+    elif stype == 6:
+        pass
+    elif stype == 7:
+        pass
+    elif stype == 9:
+        pass
     else:
         bork('Unknown type {} for section {}'.format(stype, i + 1))
