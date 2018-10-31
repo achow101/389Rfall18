@@ -24,22 +24,49 @@ with open(args.file, 'rb') as fpff:
     data = fpff.read()
 
 # Unpack header
-magic, version, timestamp, author, section_count = struct.unpack("<LLL8sL", data[0:24])
+offset = 0
+magic, version, timestamp, author, section_count = struct.unpack('<LLL8sL', data[0:24])
+offset = 24
 
 if magic != MAGIC:
-    bork("Bad magic! Got {}, expected {}".format(hex(magic), hex(MAGIC)))
+    bork('Bad magic! Got {}, expected {}'.format(hex(magic), hex(MAGIC)))
 
 if version != VERSION:
-    bork("Bad version! Got {}, expected {}".format(int(version), int(VERSION)))
+    bork('Bad version! Got {}, expected {}'.format(int(version), int(VERSION)))
 
-print("------- HEADER -------")
-print("MAGIC: {}".format(hex(magic)))
-print("VERSION: {}".format(int(version)))
-print("TIMESTAMP: {} ({} UNIX Timestamp)".format(datetime.datetime.utcfromtimestamp(timestamp), timestamp))
-print("AUTHOR: {}".format(author.decode()))
-print("SECTION COUNT: {}".format(section_count))
+print('------- HEADER -------')
+print('MAGIC: {}'.format(hex(magic)))
+print('VERSION: {}'.format(int(version)))
+print('TIMESTAMP: {} ({} UNIX Timestamp)'.format(datetime.datetime.utcfromtimestamp(timestamp), timestamp))
+print('AUTHOR: {}'.format(author.decode()))
+print('SECTION COUNT: {}'.format(section_count))
 
-# We've parsed the magic and version out for you, but you're responsible for
-# the rest of the header and the actual FPFF body. Good luck!
+print('-------  BODY  -------')
 
-print("-------  BODY  -------")
+# Unpack body
+for i in range(0, section_count):
+    # Unpack section
+    print('-------  Section {}  -------'.format(i + 1))
+    stype, slen = struct.unpack('<LL', data[offset:offset + 8])
+    offset += 8
+    print('STYPE: {}'.format(hex(stype)))
+    print('SLENGTH: {}'.format(slen))
+
+    if stype == 1:
+        print('TYPE NAME: PNG')
+    elif stype == 2:
+        print('TYPE NAME: DWORDS')
+    elif stype == 3:
+        print('TYPE NAME: UTF-8')
+    elif stype == 4:
+        print('TYPE NAME: DOUBLES')
+    elif stype == 5:
+        print('TYPE NAME: WORDS')
+    elif stype == 6:
+        print('TYPE NAME: COORDINATES')
+    elif stype == 7:
+        print('TYPE NAME: REFERENCE')
+    elif stype == 9:
+        print('TYPE NAME: ASCII')
+    else:
+        bork('Unknown type {} for section {}'.format(stype, i + 1))
