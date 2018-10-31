@@ -45,21 +45,21 @@ print('-------  BODY  -------')
 
 def section_name(stype):
     if stype == 1:
-        print('TYPE NAME: PNG')
+        return 'TYPE NAME: PNG'
     elif stype == 2:
-        print('TYPE NAME: DWORDS')
+        return 'TYPE NAME: DWORDS'
     elif stype == 3:
-        print('TYPE NAME: UTF-8')
+        return 'TYPE NAME: UTF-8'
     elif stype == 4:
-        print('TYPE NAME: DOUBLES')
+        return 'TYPE NAME: DOUBLES'
     elif stype == 5:
-        print('TYPE NAME: WORDS')
+        return 'TYPE NAME: WORDS'
     elif stype == 6:
-        print('TYPE NAME: COORDINATES')
+        return 'TYPE NAME: COORDINATES'
     elif stype == 7:
-        print('TYPE NAME: REFERENCE')
+        return 'TYPE NAME: REFERENCE'
     elif stype == 9:
-        print('TYPE NAME: ASCII')
+        return 'TYPE NAME: ASCII'
 
 # Unpack body
 sec = 1
