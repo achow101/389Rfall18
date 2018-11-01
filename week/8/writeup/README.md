@@ -15,7 +15,7 @@ Digital acknowledgement of honor pledge: Andrew Chow
 
 2. `laz0rh4x` and `c0uchpot4doz`
 
-3. `104.248.224.85` and `206.189.113.189`
+3. `104.248.224.85` and `206.189.113.189`, both hosted on DigitalOcean servers in New York. So is the target server.
 
 4. 2749
 
@@ -119,4 +119,6 @@ SLENGTH: 48
 5. Flags found:
 ```
 CMSC389R-{c0rn3rst0n3_airlin3s_to_the_m00n}
+CMSC389R-{PlaIN_DIfF_FLAG}
+CMSC389R-{h1dd3n-s3ct10n-1n-f1l3}
 ```
