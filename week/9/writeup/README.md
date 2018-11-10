@@ -27,4 +27,11 @@ This was done as a sanity check that all hashes had been cracked.
 
 ### Part 2 (40 Pts)
 
-CMSC389R-{H4sh-5l!ngInG-h@sH3r}
+Flag: `CMSC389R-{H4sh-5l!ngInG-h@sH3r}`
+
+To handle the trivia server, I wrote the script to retrieve the instruction from the server and then perform the task asked.
+Since the instructions had a consistent format, I was able to easily extract the instruction line, the hash function that should be used, and the data that should be hashed.
+Since hashlib has a handy `new()` generic constructor that takes a hash function name, I just used that and passed in the hash function name that was provided by the server.
+Then the hash funcion was used to hash the data and the resulting hash in hex was sent to the server for validation.
+This was done in a while loop that would break only if it saw the flag format.
+Once it saw the flag format, it would exit and the flag would be printed out.
