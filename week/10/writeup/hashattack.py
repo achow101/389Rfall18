@@ -35,7 +35,7 @@ data = s.recv(1024)
 # print(data)
 
 # initialize hash object with state of a vulnerable hash
-fake_md5 = md5py.new()
+fake_md5 = md5py.new('A' * 64)
 fake_md5.A, fake_md5.B, fake_md5.C, fake_md5.D = md5py._bytelist2long(binascii.unhexlify(legit))
 
 malicious = 'pwned'  # put your malicious message here
@@ -60,7 +60,7 @@ fake_hash = fake_md5.hexdigest()
 # (i.e. len(secret + message + padding) = 64 bytes = 512 bits
 
 for i in range(6, 16):
-    padding = b'\x80' + b'\x00' * (53-i) + struct.pack('<Q', i + len(message))
+    padding = b'\x80' + b'\x00' * (55 - i - len(message)) + struct.pack('<Q', (i + len(message)) * 8)
 
     # payload is the message that corresponds to the hash in `fake_hash`
     # server will calculate md5(secret + payload)
@@ -91,15 +91,12 @@ for i in range(6, 16):
     payload = payload.replace('\n', '\\x0a')
     s.send(payload)
     s.send('\n')
+    print(binascii.hexlify(payload))
 
     # Get result
     data = s.recv(1024)
-    # print(data)
+    print(data)
 
     # Get result
     data = s.recv(1024)
-    # print(data)
-    if data.split()[2] == fake_hash:
-        print("FOUND")
-        print(binascii.hexlify(payload))
-        break
+    print(data)
