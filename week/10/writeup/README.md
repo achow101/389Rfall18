@@ -26,4 +26,21 @@ If I got a response that indicated success, the loop exited and told me what the
 
 ### Part 2 (30 Pts)
 
+To generate a key, one would do the following:
 
+```
+$ gpg --gen-key
+<follow the prompts>
+```
+
+To import someone else's private key if it were named `pgpassignment.key`, you do
+
+```
+$ gpg --import-key pgpassignment.key
+```
+
+To encrypt a message to the ID `C140F7019C5FCF20E12A454F9665C74E448C470E` and write it to a file named `message.private`, you would do:
+```
+$ gpg -aer C140F7019C5FCF20E12A454F9665C74E448C470E > message.private
+<type message at prompt>
+```
