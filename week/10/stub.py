@@ -1,19 +1,20 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # from the git repo
 import md5py
+import binascii
 
 #####################################
 ### STEP 1: Calculate forged hash ###
 #####################################
 
-message = ''    # original message here
-legit = ''      # a legit hash of secret + message goes here, obtained from signing a message
+message = 'a'    # original message here
+legit = '0ef56518e0843d8c0611d808a7df0beb'  # a legit hash of secret + message goes here, obtained from signing a message
 
 # initialize hash object with state of a vulnerable hash
 fake_md5 = md5py.new('A' * 64)
-fake_md5.A, fake_md5.B, fake_md5.C, fake_md5.D = md5py._bytelist2long(legit.decode('hex'))
+fake_md5.A, fake_md5.B, fake_md5.C, fake_md5.D = md5py._bytelist2long(binascii.unhexlify(legit))
 
-malicious = ''  # put your malicious message here
+malicious = '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x38pwned'  # put your malicious message here
 
 # update legit hash with malicious message
 fake_md5.update(malicious)
