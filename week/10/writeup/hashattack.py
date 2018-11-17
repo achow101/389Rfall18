@@ -61,7 +61,6 @@ fake_hash = fake_md5.hexdigest()
 
 for i in range(6, 16):
     padding = b'\x80' + b'\x00' * (55 - i - len(message)) + struct.pack('<Q', (i + len(message)) * 8)
-
     # payload is the message that corresponds to the hash in `fake_hash`
     # server will calculate md5(secret + payload)
     #                     = md5(secret + message + padding + malicious)
@@ -91,12 +90,18 @@ for i in range(6, 16):
     payload = payload.replace('\n', '\\x0a')
     s.send(payload)
     s.send('\n')
-    print(binascii.hexlify(payload))
 
     # Get result
     data = s.recv(1024)
-    print(data)
+    # print(data)
 
     # Get result
     data = s.recv(1024)
-    print(data)
+    if "Wow..." in data:
+        break
+
+print("FOUND")
+print('Legit hash: {}'.format(legit))
+print('Fake hash: {}'.format(fake_hash))
+print('Payload: {}'.format(binascii.hexlify(payload)))
+print(data)
