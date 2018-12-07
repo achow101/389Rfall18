@@ -12,6 +12,20 @@ Digital acknowledgement of honor pledge: *PUT YOUR NAME HERE*
 
 ### Part 1 (70 Pts)
 
+Based on the instructions, I determined that the appropriate attack is a SQL Injection.
+Clicking on the links on the webiste, I noticed that the page each item linked to had an `id` paramter with it's value set to a number.
+It seemed likely that the id number was being passed to a SQL query and so the injection could be done by modifying the value of `id`.
+I tried various things, including `' OR '1'='1'`, `' union select ...'`, and various other statements in order to try to get a response.
+Some queries resulting in a 500 internal server error.
+Other queries just returned the item for id 0.
+My primary angle of attack was to use an additional select statement so that I could get the table names, and from there dump the tables.
+
+However, this did not work.
+After talking to Mike who mentioned that the site was behind a Web Application Firewall, I tried `' || '1'='1' -- -`.
+This query is like the earlier `OR` I tried, but using a logical or and has a comment indicator at the end to ensure that the SQL statement is correct.
+This resulted in all of the records in the table to be dumped to the page, revealing the flag.
+
+The flag is `CMSC38R-{y0U-are_the_5ql_n1nja}`.
 
 ### Part 2 (30 Pts)
 
